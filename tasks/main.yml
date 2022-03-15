@@ -71,6 +71,7 @@
     url: "https://github.com/prometheus/alertmanager/releases/download\
       /v{{ alertmanager_version }}/{{ amtool_dist_basename }}.tar.gz"
     dest: "/tmp/{{ amtool_dist_basename }}.tar.gz"
+    mode: "0644"
   when: should_install_amtool
 
 - name: Unarchive amtool tarball
