@@ -1,4 +1,8 @@
 ---
+# Version of alertmanager. This will be used to determine the version of amtool to
+# download and should match the version of alertmanager being used on the server.
+alertmanager_version: "0.24.0"
+
 # Host to install amtool on. This defaults to localhost so that amtool can be used by the
 # Ansible control machine to create silences for hosts which are being provisioned.
 amtool_host: "localhost"
