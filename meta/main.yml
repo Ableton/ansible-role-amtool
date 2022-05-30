@@ -4,7 +4,7 @@ galaxy_info:
   company: Ableton AG
   description: Install amtool on the Ansible control host
   license: MIT
-  min_ansible_version: 2.10
+  min_ansible_version: "2.10"
   role_name: amtool
 
   platforms:
