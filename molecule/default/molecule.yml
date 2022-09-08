@@ -1,8 +1,7 @@
 ---
 dependency:
   name: galaxy
-  options:
-    collections-path: .ansible/collections
+  enabled: False
 driver:
   name: docker
 platforms:
