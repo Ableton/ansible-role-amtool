@@ -1,6 +1,8 @@
 ---
 dependency:
   name: galaxy
+  options:
+    collections-path: .ansible/collections
 driver:
   name: docker
 platforms:
