@@ -1,0 +1,15 @@
+---
+- name: Verify
+  hosts: all
+  tasks:
+    - name: Stat amtool binary
+      ansible.builtin.stat:
+        path: "/tmp/bin/amtool"
+      register: amtool_file
+
+    - name: Assert that amtool was correctly installed
+      assert:
+        that:
+          - amtool_file.stat.exists
+          - amtool_file.stat.isreg
+          - amtool_file.stat.mode == "0755"
