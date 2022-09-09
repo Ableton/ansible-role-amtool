@@ -8,7 +8,7 @@
       register: amtool_file
 
     - name: Assert that amtool was correctly installed
-      assert:
+      ansible.builtin.assert:
         that:
           - amtool_file.stat.exists
           - amtool_file.stat.isreg
