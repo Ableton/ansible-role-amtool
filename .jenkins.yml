@@ -4,6 +4,7 @@ pull_requests:
 
 pushes:
   - main
+  - nre/main/test-ansible-utils-singleton
 
 notifications:
   - name: Build failures on the main branch
