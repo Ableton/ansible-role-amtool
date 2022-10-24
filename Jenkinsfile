@@ -30,9 +30,9 @@ devToolsProject.run(
             error 'ansible-lint exited with warnings, check output of the previous step'
           }
         },
-        groovylint: { groovylint.checkSingleFile(path: './Jenkinsfile') },
+        // groovylint: { groovylint.checkSingleFile(path: './Jenkinsfile') },
         molecule: { ansibleUtils.molecule() },
-        yamllint: { sh 'yamllint --strict .' },
+        // yamllint: { sh 'yamllint --strict .' },
       )
     }
   },
