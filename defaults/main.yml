@@ -1,7 +1,14 @@
 ---
 # Version of alertmanager. This will be used to determine the version of amtool to
 # download and should match the version of alertmanager being used on the server.
+#
+# Define to "auto" to ask the server defined in alertmanager_url for its version and use
+# that instead. This option requires the alertmanager server to support the v2 API.
 alertmanager_version: "0.24.0"
+
+# Server URL to use when asking for the alertmanager version. Only required if the
+# alertmanager_version variable is defined to "auto".
+alertmanager_url: ""
 
 # Host to install amtool on. This defaults to localhost so that amtool can be used by the
 # Ansible control machine to create silences for hosts which are being provisioned.

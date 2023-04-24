@@ -39,6 +39,24 @@
   register: amtool_version
   when: amtool_exe_exists.stat.exists
 
+- name: Get alertmanager version from server
+  when: alertmanager_version == "auto"
+  block:
+    - name: Fail if alertmanager_url is not defined
+      ansible.builtin.fail:
+        msg: "alertmanager_version is auto, but alertmanager_url is not set!"
+      when: alertmanager_url == ""
+
+    - name: Fetch version from alertmanager API
+      delegate_to: localhost
+      ansible.builtin.uri:
+        url: "{{ alertmanager_url }}/api/v2/status"
+      register: alertmanager_server_status
+
+    - name: Set alertmanager_version fact
+      ansible.builtin.set_fact:
+        alertmanager_version: "{{ alertmanager_server_status.json.versionInfo.version }}"
+
 - name: Install amtool if the version does not match
   ansible.builtin.set_fact:
     should_install_amtool: true
