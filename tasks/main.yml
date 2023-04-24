@@ -34,7 +34,7 @@
     head -1 |
     awk '{print $3}'
   args:
-    executable: /bin/bash
+    executable: "/bin/bash"
   changed_when: false
   register: amtool_version
   when: amtool_exe_exists.stat.exists
