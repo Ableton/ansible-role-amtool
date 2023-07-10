@@ -5,4 +5,4 @@
     amtool_host: "{{ inventory_hostname }}"
     amtool_install_path: "/tmp/bin"
   roles:
-    - ansible-role-amtool
+    - ableton.amtool
