@@ -51,6 +51,9 @@
       delegate_to: localhost
       ansible.builtin.uri:
         url: "{{ alertmanager_url }}/api/v2/status"
+      until: alertmanager_server_status.status == 200
+      retries: 3
+      delay: 5
       register: alertmanager_server_status
 
     - name: Set alertmanager_version fact
