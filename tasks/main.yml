@@ -74,7 +74,7 @@
   when: should_install_amtool
 
 - name: Get host platform name
-  ansible.builtin.command: uname -s
+  ansible.builtin.command: "uname -s"
   delegate_to: "{{ amtool_host }}"
   changed_when: false
   register: uname_system
