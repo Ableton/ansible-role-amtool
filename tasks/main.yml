@@ -96,6 +96,11 @@
         host_arch: "amd64"
       when: uname_arch.stdout == "x86_64"
 
+    - name: Set host architecture fact for ARM64 systems
+      ansible.builtin.set_fact:
+        host_arch: "arm64"
+      when: uname_arch.stdout == "aarch64"
+
     - name: Fail if host_arch is not defined
       ansible.builtin.fail:
         msg: "Unsupported host architecture"
