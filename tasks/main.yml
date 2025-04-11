@@ -74,16 +74,42 @@
   when: should_install_amtool
 
 - name: Get host platform name
-  ansible.builtin.command: uname -s
+  ansible.builtin.command: "uname -s"
   delegate_to: "{{ amtool_host }}"
   changed_when: false
   register: uname_system
   when: should_install_amtool
 
+# amtool binaries don't use the same architecture names as the arch/uname tools, so we
+# need to do a bit of data munging
+- name: Set host architecture fact
+  when: should_install_amtool
+  block:
+    - name: Get host architecture
+      ansible.builtin.command: "uname -m"
+      delegate_to: "{{ amtool_host }}"
+      changed_when: false
+      register: uname_arch
+
+    - name: Set host architecture fact for x86_64 systems
+      ansible.builtin.set_fact:
+        host_arch: "amd64"
+      when: uname_arch.stdout == "x86_64"
+
+    - name: Set host architecture fact for ARM64 systems
+      ansible.builtin.set_fact:
+        host_arch: "arm64"
+      when: uname_arch.stdout == "aarch64"
+
+    - name: Fail if host_arch is not defined
+      ansible.builtin.fail:
+        msg: "Unsupported host architecture"
+      when: host_arch is not defined
+
 - name: Set fact for amtool binary distribution file basename
   ansible.builtin.set_fact:
     amtool_dist_basename: "alertmanager-{{ alertmanager_version }}\
-      .{{ uname_system.stdout | lower }}-amd64"
+      .{{ uname_system.stdout | lower }}-{{ host_arch }}"
   when: should_install_amtool
 
 - name: Get amtool binary zipfile
