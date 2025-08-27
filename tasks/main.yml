@@ -99,7 +99,7 @@
     - name: Set host architecture fact for ARM64 systems
       ansible.builtin.set_fact:
         host_arch: "arm64"
-      when: uname_arch.stdout == "aarch64"
+      when: uname_arch.stdout == "aarch64" or uname_arch.stdout == "arm64"
 
     - name: Fail if host_arch is not defined
       ansible.builtin.fail:
