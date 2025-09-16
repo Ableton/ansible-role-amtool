@@ -4,8 +4,10 @@ dependency:
 driver:
   name: docker
 platforms:
-  - name: instance
+  - name: instance-focal
     image: ubuntu:20.04
+  - name: instance-noble
+    image: ubuntu:24.04
 provisioner:
   name: ansible
   log: true
