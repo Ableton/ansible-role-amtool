@@ -4,9 +4,9 @@ dependency:
 driver:
   name: docker
 platforms:
-  - name: instance-focal
+  - name: ansible-role-amtool-molecule-focal
     image: ubuntu:20.04
-  - name: instance-noble
+  - name: ansible-role-amtool-molecule-noble
     image: ubuntu:24.04
 provisioner:
   name: ansible
