@@ -4,8 +4,8 @@ dependency:
 driver:
   name: docker
 platforms:
-  - name: ansible-role-amtool-molecule-focal
-    image: ubuntu:20.04
+  - name: ansible-role-amtool-molecule-jammy
+    image: ubuntu:22.04
   - name: ansible-role-amtool-molecule-noble
     image: ubuntu:24.04
 provisioner:
